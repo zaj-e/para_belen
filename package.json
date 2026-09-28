@@ -1,0 +1,13 @@
+{
+    "name": "belen-dream",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite --config vite.config.js",
+        "check": "node --check dist/app.js && node --check dist/physics.js"
+    },
+    "devDependencies": {
+        "vite": "^7.3.0"
+    }
+}

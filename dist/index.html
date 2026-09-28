@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#241b32">
+    <title>El sueño de Belén</title>
+    <meta name="description"
+        content="Un pequeño sueño para Belén. Una habitación tibia, cuatro patitas y una carta que espera.">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23241b32'/%3E%3Cpath d='M7 12V5l7 5h4l7-5v18l-5 4h-8l-5-4z' fill='%23f3d9a0'/%3E%3Cpath d='M11 16h3v3h-3m8-3h3v3h-3' fill='%23241b32'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main id="game-shell" aria-label="El sueño de Belén, un pequeño juego">
+        <div class="room-frame" id="room-frame"><canvas id="game" width="960" height="640" tabindex="0"
+                aria-label="Controla a Belén. Flechas o A y D para caminar, espacio para saltar, E para leer la carta cuando estés cerca."></canvas>
+            <div class="vignette" aria-hidden="true"></div>
+            <header class="hud">
+                <div><span class="dream-label">UN PEQUEÑO SUEÑO</span>
+                    <h1>Belén<span aria-hidden="true"> ✧</span></h1>
+                </div>
+                <div class="hud-actions"><button id="edit-letter" aria-label="Escribir tu carta"
+                        title="Escribir tu carta">✎ <span>Tu carta</span></button><button id="sound"
+                        aria-label="Activar sonido" aria-pressed="false">♪</button><button id="fullscreen"
+                        aria-label="Pantalla completa" title="Pantalla completa">⛶</button></div>
+            </header>
+            <div class="goal" id="goal">Algo brilla sobre la mesa…</div>
+            <div id="loading" class="loading" role="status"><span>☾</span>Entrando en un sueño…</div>
+            <div id="speech" class="speech" role="status" aria-live="polite">¿Estoy… soñando?</div><button id="read"
+                class="read pixel-button" hidden><span class="key">E</span> Leer la carta <span>♡</span></button>
+            <div class="instructions" id="instructions"><span><kbd>←</kbd><kbd>→</kbd>
+                    caminar</span><span><kbd>Espacio</kbd> saltar</span><span><kbd>E</kbd> leer</span></div>
+            <div class="touch-controls" aria-label="Controles táctiles">
+                <div><button data-control="left" aria-label="Caminar hacia la izquierda">◀</button><button
+                        data-control="right" aria-label="Caminar hacia la derecha">▶</button></div><button
+                    data-control="jump" class="jump" aria-label="Saltar">↑<small>saltar</small></button>
+            </div>
+            <div id="status" class="sr-only" role="status"></div>
+        </div>
+    </main>
+    <dialog id="letter-modal" aria-labelledby="letter-title">
+        <div class="paper"><button id="close-letter" class="close" aria-label="Volver al sueño">×</button>
+            <div class="letter-decoration" aria-hidden="true">✧ · ♡ · ✧</div>
+            <p class="overline">UNA CARTA EN TU SUEÑO</p>
+            <h2 id="letter-title">Para Belén</h2>
+            <div id="letter-body" class="letter-body"></div>
+            <p id="letter-signature" class="signature"></p><button id="return" class="pixel-button">Volver al sueño
+                ♡</button>
+        </div>
+    </dialog>
+    <dialog id="editor" aria-labelledby="editor-title">
+        <form id="letter-form" class="paper editor-paper"><button type="button" id="close-editor" class="close"
+                aria-label="Cerrar editor">×</button>
+            <p class="overline">DE TI, PARA ELLA</p>
+            <h2 id="editor-title">Una carta para Belén</h2>
+            <p class="editor-help">Escribe lo que quieres que encuentre al despertar dentro de este pequeño sueño.</p>
+            <label for="heading">Saludo</label><input id="heading" maxlength="100" value="Para mi Belén,"
+                required><label for="message">Tu mensaje</label><textarea id="message" rows="9" maxlength="6000"
+                placeholder="Aquí van tus palabras. Un recuerdo, lo que amas de ella, lo que deseas para este nuevo año…"
+                required></textarea><label for="signature">Firma</label><input id="signature" maxlength="120"
+                placeholder="Con todo mi amor, Marcelo">
+            <p class="link-note">Al guardar, la carta queda incluida en el enlace. Conserva ese enlace para volver a
+                abrirla o enviársela. El sitio debe permitirle entrar antes de compartirlo.</p>
+            <div class="editor-actions"><button class="pixel-button" type="submit">Guardar y ver la carta
+                    ♡</button><button id="copy-link" type="button" class="secondary" disabled>Copiar enlace para
+                    ella</button></div>
+            <p id="save-status" role="status" class="save-status"></p><input id="share-link"
+                aria-label="Enlace con tu carta" readonly hidden>
+        </form>
+    </dialog>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
