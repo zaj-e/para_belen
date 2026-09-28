@@ -18,7 +18,7 @@
         <div class="room-frame" id="room-frame"><canvas id="game" width="960" height="640" tabindex="0"
                 aria-label="Controla a Belén. Flechas o A y D para caminar, espacio para saltar, E para leer la carta cuando estés cerca."></canvas>
             <div class="vignette" aria-hidden="true"></div>
-            <header class="hud">
+            <header class="hud" hidden>
                 <div><span class="dream-label">UN PEQUEÑO SUEÑO</span>
                     <h1>Belén<span aria-hidden="true"> ✧</span></h1>
                 </div>
@@ -42,34 +42,16 @@
         </div>
     </main>
     <dialog id="letter-modal" aria-labelledby="letter-title">
-        <div class="paper"><button id="close-letter" class="close" aria-label="Volver al sueño">×</button>
-            <div class="letter-decoration" aria-hidden="true">✧ · ♡ · ✧</div>
-            <p class="overline">UNA CARTA EN TU SUEÑO</p>
-            <h2 id="letter-title">Para Belén</h2>
-            <div id="letter-body" class="letter-body"></div>
-            <p id="letter-signature" class="signature"></p><button id="return" class="pixel-button">Volver al sueño
-                ♡</button>
-        </div>
-    </dialog>
-    <dialog id="editor" aria-labelledby="editor-title">
-        <form id="letter-form" class="paper editor-paper"><button type="button" id="close-editor" class="close"
-                aria-label="Cerrar editor">×</button>
-            <p class="overline">DE TI, PARA ELLA</p>
-            <h2 id="editor-title">Una carta para Belén</h2>
-            <p class="editor-help">Escribe lo que quieres que encuentre al despertar dentro de este pequeño sueño.</p>
-            <label for="heading">Saludo</label><input id="heading" maxlength="100" value="Para mi Belén,"
-                required><label for="message">Tu mensaje</label><textarea id="message" rows="9" maxlength="6000"
-                placeholder="Aquí van tus palabras. Un recuerdo, lo que amas de ella, lo que deseas para este nuevo año…"
-                required></textarea><label for="signature">Firma</label><input id="signature" maxlength="120"
-                placeholder="Con todo mi amor, Marcelo">
-            <p class="link-note">Al guardar, la carta queda incluida en el enlace. Conserva ese enlace para volver a
-                abrirla o enviársela. El sitio debe permitirle entrar antes de compartirlo.</p>
-            <div class="editor-actions"><button class="pixel-button" type="submit">Guardar y ver la carta
-                    ♡</button><button id="copy-link" type="button" class="secondary" disabled>Copiar enlace para
-                    ella</button></div>
-            <p id="save-status" role="status" class="save-status"></p><input id="share-link"
-                aria-label="Enlace con tu carta" readonly hidden>
-        </form>
+        <article class="paper birthday-letter"><button id="close-letter" class="close" aria-label="Volver al sueño" autofocus>×</button>
+            <h2 id="letter-title">Para mi Belén:</h2>
+            <div id="letter-body" class="letter-body">
+                <p>Feliz cumpleaños, mi bella.</p>
+                <p>No tengo palabras para describir lo agradecido que estoy de que seas parte de mi vida. Estoy tan feliz por haberte conocido y por haber podido pasar todos estos años a tu lado.</p>
+                <p>Deseo que seas inmensamente feliz y que puedas conseguir todo lo que te propongas. Quiero estar a tu lado. Quiero verte brillar por la eternidad.</p>
+                <p>Te adoro. Nos vemos pronto para darte un besito y un abrazo.</p>
+            </div>
+            <p id="letter-signature" class="signature">Con todo mi amor, Marcelo ❤️</p>
+        </article>
     </dialog>
     <script type="module" src="app.js"></script>
 </body>
