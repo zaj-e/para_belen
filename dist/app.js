@@ -6,9 +6,11 @@ let ready = false, paused = false, last = 0, elapsed = 0, speechUntil = 5, nextS
 const LETTER = { x: 746, y: 334 };
 // Midnight in Peru (UTC-5), independent of the phone's selected time zone.
 const LETTER_UNLOCK_AT = Date.parse('2026-09-28T00:00:00-05:00');
+// Only this URL bypasses the date; nothing is saved on the device.
+const manualUnlock = new URLSearchParams(location.search).get('llave') === 'frase-secreta';
 const readLabel = $('read').innerHTML;
 let letterUnlocked = null;
-function isLetterUnlocked() { return Date.now() >= LETTER_UNLOCK_AT }
+function isLetterUnlocked() { return manualUnlock || Date.now() >= LETTER_UNLOCK_AT }
 function updateLetterAccess(near) {
     const unlocked = isLetterUnlocked(), changed = unlocked !== letterUnlocked;
     if (changed) {
